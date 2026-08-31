@@ -17,18 +17,24 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      background: #fdfcf8; /* Soft Premium Cream Background */
+      /* Beautiful Pastel Gradient Background */
+      background: linear-gradient(135deg, #CCFBFF 0%, #EF96C5 100%);
+      background-attachment: fixed;
       color: #334155;
       overflow-x: hidden;
       -webkit-user-select: none;
       user-select: none;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
-    /* HEADER */
+    /* HEADER - Glassmorphism Effect */
     .header {
-      background: rgba(255, 255, 255, 0.90);
-      backdrop-filter: blur(12px);
-      padding: 15px 5%;
+      background: rgba(255, 255, 255, 0.70);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      padding: 10px 5%;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -36,29 +42,25 @@
       position: sticky;
       top: 0;
       z-index: 100;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     }
 
     .logo-container {
       display: flex;
       align-items: center;
-      gap: 12px;
     }
 
+    /* BADA LOGO */
     .logo-container img {
-      width: 42px;
-      height: 42px;
+      height: 70px; /* Bada size kar diya gaya hai */
+      width: auto;
       object-fit: contain;
-      border-radius: 8px;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.08)); /* Pop up effect */
+      transition: transform 0.3s ease;
     }
 
-    .logo-container h1 {
-      font-size: 22px;
-      font-weight: 700;
-      color: #0f172a;
-      letter-spacing: -0.5px;
-      background: linear-gradient(90deg, #0f172a, #10b981);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .logo-container img:hover {
+      transform: scale(1.05);
     }
 
     /* FILTER BUTTON */
@@ -66,9 +68,9 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      background: #f1f5f9;
+      background: rgba(255, 255, 255, 0.9);
       color: #0f172a;
-      border: none;
+      border: 1px solid rgba(0, 0, 0, 0.05);
       padding: 10px 18px;
       border-radius: 25px;
       font-size: 14px;
@@ -76,6 +78,7 @@
       font-family: 'Poppins', sans-serif;
       cursor: pointer;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
 
     .filter-btn:hover, .filter-btn:active {
@@ -83,11 +86,12 @@
       color: #ffffff;
       transform: scale(1.05);
       box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+      border-color: #10b981;
     }
 
     .filter-btn svg { width: 18px; height: 18px; }
 
-    /* SEARCH BAR & ICON */
+    /* SEARCH BAR & ICON - Perfectly Aligned */
     .search-container {
       max-width: 800px;
       margin: 30px auto 20px;
@@ -104,26 +108,30 @@
       width: 22px;
       height: 22px;
       color: #94a3b8;
-      pointer-events: none;
+      pointer-events: none; /* Allows clicking through the icon */
       transition: 0.3s ease;
+      z-index: 2;
     }
 
     .search-box {
       width: 100%;
       height: 56px;
-      border: 2px solid #e2e8f0;
-      border-radius: 14px;
-      padding: 0 24px 0 52px;
+      border: 2px solid rgba(255, 255, 255, 0.6);
+      border-radius: 16px;
+      padding: 0 24px 0 52px; /* Left padding ensures text doesn't hit icon */
       font-size: 16px;
       font-family: 'Poppins', sans-serif;
       outline: none;
-      background: #fff;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.04);
       transition: all 0.4s ease;
+      color: #1e293b;
     }
 
     .search-box:focus {
       border-color: #10b981;
+      background: #ffffff;
       box-shadow: 0 8px 25px rgba(16, 185, 129, 0.2);
       transform: translateY(-2px);
     }
@@ -135,7 +143,9 @@
 
     /* BRANDS GRID */
     .container {
+      flex: 1; /* Pushes footer to bottom */
       max-width: 1350px;
+      width: 100%;
       margin: 0 auto 50px;
       padding: 0 20px;
       position: relative;
@@ -149,7 +159,9 @@
     }
 
     .brand-card {
-      background: #ffffff;
+      background: rgba(255, 255, 255, 0.85); 
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-radius: 16px;
       padding: 24px 20px;
       display: flex;
@@ -157,8 +169,8 @@
       align-items: center;
       justify-content: space-between;
       text-decoration: none;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-      border: 1px solid #f1f5f9;
+      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.4);
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       position: relative;
       overflow: hidden;
@@ -168,6 +180,7 @@
       transform: translateY(-8px) scale(1.02);
       box-shadow: 0 15px 30px rgba(0,0,0,0.1);
       border-color: #10b981;
+      background: rgba(255, 255, 255, 0.98);
     }
     
     .brand-card:active {
@@ -194,7 +207,7 @@
       margin-bottom: 18px;
     }
 
-    /* CTA BUTTON - HIGHLY ATTRACTIVE */
+    /* CTA BUTTON */
     .cta-btn {
       background: linear-gradient(135deg, #10b981 0%, #059669 100%);
       color: #ffffff;
@@ -250,9 +263,31 @@
       padding: 50px;
       font-size: 16px;
       color: #64748b;
-      background: #fff;
+      background: rgba(255, 255, 255, 0.8);
       border-radius: 14px;
       grid-column: 1 / -1;
+      backdrop-filter: blur(10px);
+    }
+
+    /* FOOTER */
+    .footer {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-top: 1px solid rgba(255, 255, 255, 0.4);
+      padding: 25px 20px;
+      text-align: center;
+      color: #475569;
+      font-size: 14px;
+      font-weight: 500;
+      position: relative;
+      z-index: 10;
+      margin-top: auto;
+    }
+
+    .footer span {
+      color: #10b981;
+      font-weight: 700;
     }
 
     /* SLIDING FILTER DRAWER */
@@ -296,6 +331,7 @@
       .brand-name { font-size: 14px; margin-bottom: 12px; }
       .cta-btn { font-size: 10px; padding: 10px 5px; }
       .filter-drawer { width: 100%; right: -100%; }
+      .logo-container img { height: 50px; } /* Slightly smaller for mobile phones */
     }
 
     /* MAGIC RGB CANVAS OVERLAY */
@@ -311,13 +347,12 @@
 
 <body>
 
-  <!-- Seamless Glowing RGB Trail Canvas -->
+  <!-- Smooth & Lag-Free RGB Canvas -->
   <canvas id="magicCanvas"></canvas>
 
   <header class="header">
     <div class="logo-container">
-      <img src="logo.png" alt="Any Shop">
-      <h1>Any Shop</h1>
+      <img src="logo.png" alt="Any Shop Logo">
     </div>
     <button class="filter-btn" id="openFilterBtn">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -336,8 +371,7 @@
 
   <main class="container">
     <div class="brands" id="brandsGrid">
-      
-      <!-- Redirect Links in all Cards -->
+      <!-- Redirect Links -->
       <a class="brand-card" href="https://aapka-apna.bazzar.workers.dev/" data-category="ecommerce" data-name="Flipkart">
         <img src="flipkart.png" alt="Flipkart" loading="lazy">
         <div class="brand-name">Flipkart</div>
@@ -494,6 +528,12 @@
     </div>
   </main>
 
+  <!-- NEW FOOTER ADDED -->
+  <footer class="footer">
+    <p>&copy; 2026 <span>Any Shop</span>. All Rights Reserved.</p>
+    <p style="font-size: 12px; margin-top: 5px; opacity: 0.8;">Your Everyday Premium Store</p>
+  </footer>
+
   <!-- FILTER DRAWER -->
   <div class="filter-overlay" id="filterOverlay"></div>
   <aside class="filter-drawer" id="filterDrawer">
@@ -528,7 +568,7 @@
     </div>
   </aside>
 
-  <!-- JAVASCRIPT: FILTER LOGIC & SEAMLESS RGB GLOW TRAIL -->
+  <!-- JAVASCRIPT -->
   <script>
     /* --- FILTER & SORT LOGIC --- */
     const searchInput = document.getElementById("brandSearch");
@@ -581,7 +621,7 @@
     sortDropdown.addEventListener("change", updateGrid);
     categoryRadios.forEach(radio => radio.addEventListener("change", updateGrid));
 
-    /* --- SEAMLESS RGB MAGIC TRAIL (GAP-FILLING ALGORITHM) --- */
+    /* --- OPTIMIZED LAG-FREE RGB MAGIC TRAIL --- */
     const canvas = document.getElementById('magicCanvas');
     const ctx = canvas.getContext('2d');
     
@@ -594,34 +634,32 @@
 
     let trail = [];
     let sparks = [];
-    const maxTrail = 70; // Tail length for smooth look
+    const maxTrail = 40; // Shorter tail for better performance
     let globalHue = 0;
 
-    // Spark spawner
     function spawnSparks(x, y) {
-      if(Math.random() > 0.4) {
+      // Limit total sparks on screen to prevent LAG
+      if(Math.random() > 0.6 && sparks.length < 35) {
         sparks.push({
           x: x, y: y,
-          vx: (Math.random() - 0.5) * 8, // Wider explosion
-          vy: (Math.random() - 0.5) * 8,
-          life: 1.5,
-          hue: globalHue + Math.random() * 60
+          vx: (Math.random() - 0.5) * 6, 
+          vy: (Math.random() - 0.5) * 6,
+          life: 1.2,
+          hue: globalHue + Math.random() * 50
         });
       }
     }
 
-    // Advanced Point Adder (Fills gaps automatically)
     function addPoint(x, y) {
-      // If we already have points, check distance from the last point
       if (trail.length > 0) {
         let last = trail[trail.length - 1];
         let dx = x - last.x;
         let dy = y - last.y;
         let dist = Math.sqrt(dx * dx + dy * dy);
         
-        // If distance is large (swiping fast), interpolate (fill the gap)
-        if (dist > 3) {
-          let steps = Math.floor(dist / 3);
+        if (dist > 5) {
+          // Cap interpolation steps to stop massive lag spikes on fast swipe
+          let steps = Math.min(Math.floor(dist / 5), 8); 
           for (let i = 1; i <= steps; i++) {
             let interpX = last.x + dx * (i / steps);
             let interpY = last.y + dy * (i / steps);
@@ -633,50 +671,43 @@
         }
       }
       
-      // Push actual point
       trail.push({ x, y });
       if (trail.length > maxTrail) trail.shift();
       spawnSparks(x, y);
     }
 
     window.addEventListener('mousemove', e => addPoint(e.clientX, e.clientY));
-    window.addEventListener('touchmove', e => addPoint(e.touches[0].clientX, e.touches[0].clientY));
+    window.addEventListener('touchmove', e => addPoint(e.touches[0].clientX, e.touches[0].clientY), {passive: true});
 
     function drawMagic() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      globalHue += 4; // Fast RGB color cycling
-
+      globalHue += 5; 
       ctx.globalCompositeOperation = 'source-over'; 
 
-      // 1. Draw Sparks (Spreading wide)
+      // 1. Draw Sparks (Optimized, No heavy shadows)
       for(let i = 0; i < sparks.length; i++) {
         let p = sparks[i];
         p.x += p.vx; p.y += p.vy;
-        p.life -= 0.04; 
+        p.life -= 0.05; 
         
         if(p.life <= 0) { sparks.splice(i, 1); i--; continue; }
         
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.life * 5, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, p.life * 4, 0, Math.PI * 2);
         ctx.fillStyle = `hsla(${p.hue}, 100%, 55%, ${p.life})`;
-        ctx.shadowBlur = 15;
-        ctx.shadowColor = `hsl(${p.hue}, 100%, 50%)`;
+        // Removed heavy shadowBlur here to stop lag
         ctx.fill();
       }
 
-      // 2. Draw Thick, Gapless Continuous Line
+      // 2. Draw Continuous Line
       if (trail.length > 1) {
         trail.shift(); 
-        
         const head = trail[trail.length - 1];
         const tailPos = trail[0];
 
         let gradient = ctx.createLinearGradient(tailPos.x, tailPos.y, head.x, head.y);
         gradient.addColorStop(0, `hsla(${globalHue}, 100%, 50%, 0)`);       
-        gradient.addColorStop(0.3, `hsla(${globalHue + 30}, 100%, 55%, 0.6)`);
-        gradient.addColorStop(0.6, `hsla(${globalHue + 60}, 100%, 55%, 0.9)`);
-        gradient.addColorStop(0.9, `hsla(${globalHue + 90}, 100%, 60%, 1)`);
+        gradient.addColorStop(0.5, `hsla(${globalHue + 45}, 100%, 55%, 0.8)`);
         gradient.addColorStop(1, '#ffffff');
 
         ctx.lineCap = 'round';
@@ -691,24 +722,20 @@
         }
         ctx.lineTo(head.x, head.y);
 
-        // EXTRA THICK Outer Glow - Reduced Highlight per user request
-        ctx.lineWidth = 25; 
-        ctx.strokeStyle = `hsla(${globalHue + 60}, 100%, 50%, 0.15)`; 
-        ctx.shadowBlur = 20;
-        ctx.shadowColor = `hsl(${globalHue + 60}, 100%, 50%)`;
+        // OUTER GLOW (Reduced 0.5px and optimized shadow)
+        ctx.shadowBlur = 0; // Disabled CPU-heavy shadow
+        ctx.lineWidth = 24.0; 
+        ctx.strokeStyle = `hsla(${globalHue + 60}, 100%, 50%, 0.12)`; 
         ctx.stroke();
 
-        // Vivid Core Color - Reduced thickness by 1.5px per user request
-        ctx.lineWidth = 16.5;
+        // VIVID CORE (Reduced 0.5px)
+        ctx.lineWidth = 15.5;
         ctx.strokeStyle = gradient;
-        ctx.shadowBlur = 10;
         ctx.stroke();
 
-        // Center White Beam
-        ctx.lineWidth = 4.5;
+        // WHITE BEAM (Reduced 0.5px)
+        ctx.lineWidth = 3.5;
         ctx.strokeStyle = `hsla(${globalHue + 90}, 100%, 90%, 1)`;
-        ctx.shadowBlur = 5;
-        ctx.shadowColor = '#ffffff';
         ctx.stroke();
       }
 
