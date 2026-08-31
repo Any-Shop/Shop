@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Any Shop | Premium Brands</title>
+  
+  <!-- Premium Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #fdfcf8; /* Soft Premium Cream Background */
+      color: #334155;
+      overflow-x: hidden;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    /* HEADER */
+    .header {
+      background: rgba(255, 255, 255, 0.90);
+      backdrop-filter: blur(12px);
+      padding: 15px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 25px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-container img {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .logo-container h1 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #0f172a;
+      letter-spacing: -0.5px;
+      background: linear-gradient(90deg, #0f172a, #10b981);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* FILTER BUTTON */
+    .filter-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #f1f5f9;
+      color: #0f172a;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 25px;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .filter-btn:hover, .filter-btn:active {
+      background: #10b981;
+      color: #ffffff;
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+    }
+
+    .filter-btn svg { width: 18px; height: 18px; }
+
+    /* SEARCH BAR & ICON */
+    .search-container {
+      max-width: 800px;
+      margin: 30px auto 20px;
+      padding: 0 20px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 36px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 22px;
+      height: 22px;
+      color: #94a3b8;
+      pointer-events: none;
+      transition: 0.3s ease;
+    }
+
+    .search-box {
+      width: 100%;
+      height: 56px;
+      border: 2px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 0 24px 0 52px;
+      font-size: 16px;
+      font-family: 'Poppins', sans-serif;
+      outline: none;
+      background: #fff;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+      transition: all 0.4s ease;
+    }
+
+    .search-box:focus {
+      border-color: #10b981;
+      box-shadow: 0 8px 25px rgba(16, 185, 129, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .search-box:focus + .search-icon, 
+    .search-box:focus ~ .search-icon {
+      color: #10b981;
+    }
+
+    /* BRANDS GRID */
+    .container {
+      max-width: 1350px;
+      margin: 0 auto 50px;
+      padding: 0 20px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .brands {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .brand-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+      border: 1px solid #f1f5f9;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      border-color: #10b981;
+    }
+    
+    .brand-card:active {
+      transform: translateY(-2px) scale(0.98);
+    }
+
+    .brand-card img {
+      width: 130px;
+      height: 70px;
+      object-fit: contain;
+      margin-bottom: 20px;
+      transition: transform 0.4s ease;
+    }
+
+    .brand-card:hover img {
+      transform: scale(1.1);
+    }
+
+    .brand-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1e293b;
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    /* CTA BUTTON - HIGHLY ATTRACTIVE */
+    .cta-btn {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 700;
+      width: 100%;
+      text-align: center;
+      padding: 12px 8px;
+      border-radius: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      animation: pulseGlow 2s infinite;
+    }
+
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+
+    .cta-btn::after {
+      content: "";
+      position: absolute;
+      top: 0; left: -100%;
+      width: 50%; height: 100%;
+      background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+      transform: skewX(-25deg);
+      transition: 0.5s ease;
+    }
+
+    .brand-card:hover .cta-btn {
+      background: linear-gradient(135deg, #059669 0%, #047857 100%);
+      transform: scale(1.05);
+      animation: none;
+      box-shadow: 0 8px 25px rgba(16, 185, 129, 0.5);
+    }
+
+    .brand-card:hover .cta-btn::after {
+      animation: shine 0.8s ease forwards;
+    }
+
+    @keyframes shine {
+      100% { left: 200%; }
+    }
+
+    .no-result {
+      display: none;
+      text-align: center;
+      padding: 50px;
+      font-size: 16px;
+      color: #64748b;
+      background: #fff;
+      border-radius: 14px;
+      grid-column: 1 / -1;
+    }
+
+    /* SLIDING FILTER DRAWER */
+    .filter-overlay {
+      position: fixed; inset: 0; background: rgba(15, 23, 42, 0.5);
+      z-index: 999; opacity: 0; visibility: hidden; transition: all 0.3s ease; backdrop-filter: blur(3px);
+    }
+    .filter-overlay.active { opacity: 1; visibility: visible; }
+
+    .filter-drawer {
+      position: fixed; top: 0; right: -350px;
+      width: 320px; height: 100%; background: #ffffff;
+      z-index: 1000; box-shadow: -5px 0 25px rgba(0,0,0,0.15);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex; flex-direction: column;
+    }
+    .filter-drawer.active { right: 0; }
+
+    .drawer-header { padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e2e8f0; }
+    .drawer-header h3 { font-size: 18px; font-weight: 600; color: #0f172a; }
+    .close-btn { background: none; border: none; font-size: 26px; color: #64748b; cursor: pointer; transition: 0.2s; }
+    .close-btn:hover { color: #ef4444; transform: scale(1.1) rotate(90deg); }
+    .drawer-body { padding: 24px; overflow-y: auto; flex: 1; }
+    .filter-group { margin-bottom: 30px; }
+    .filter-group label.group-title { font-size: 14px; font-weight: 600; color: #475569; margin-bottom: 12px; display: block; text-transform: uppercase; }
+    .sort-select { width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 10px; font-family: 'Poppins', sans-serif; font-size: 14px; outline: none; cursor: pointer; background: #fdfcf8; transition: 0.3s; }
+    .sort-select:focus { border-color: #10b981; }
+    .category-list { list-style: none; }
+    .category-list li { margin-bottom: 14px; }
+    .category-list label { display: flex; align-items: center; gap: 12px; cursor: pointer; font-weight: 500; font-size: 15px; color: #1e293b; transition: 0.2s; }
+    .category-list label:hover { color: #10b981; transform: translateX(5px); }
+    .category-list input[type="radio"] { accent-color: #10b981; width: 18px; height: 18px; cursor: pointer; }
+    .drawer-footer { padding: 20px 24px; border-top: 1px solid #e2e8f0; background: #fdfcf8; }
+    .apply-btn { width: 100%; background: #10b981; color: #fff; border: none; padding: 14px; border-radius: 10px; font-size: 15px; font-weight: 600; font-family: 'Poppins', sans-serif; cursor: pointer; transition: 0.3s; }
+    .apply-btn:hover { background: #059669; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3); }
+
+    @media (max-width: 600px) {
+      .brands { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px; }
+      .brand-card { padding: 15px; }
+      .brand-card img { width: 100px; height: 55px; }
+      .brand-name { font-size: 14px; margin-bottom: 12px; }
+      .cta-btn { font-size: 10px; padding: 10px 5px; }
+      .filter-drawer { width: 100%; right: -100%; }
+    }
+
+    /* MAGIC RGB CANVAS OVERLAY */
+    #magicCanvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 9999;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Seamless Glowing RGB Trail Canvas -->
+  <canvas id="magicCanvas"></canvas>
+
+  <header class="header">
+    <div class="logo-container">
+      <img src="logo.png" alt="Any Shop">
+      <h1>Any Shop</h1>
+    </div>
+    <button class="filter-btn" id="openFilterBtn">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+      </svg>
+      Filters
+    </button>
+  </header>
+
+  <div class="search-container">
+    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+    </svg>
+    <input type="search" id="brandSearch" class="search-box" placeholder="Search for your favourite brand..." autocomplete="off">
+  </div>
+
+  <main class="container">
+    <div class="brands" id="brandsGrid">
+      
+      <!-- Redirect Links in all Cards -->
+      <a class="brand-card" href="https://aapka-apna.bazzar.workers.dev/" data-category="ecommerce" data-name="Flipkart">
+        <img src="flipkart.png" alt="Flipkart" loading="lazy">
+        <div class="brand-name">Flipkart</div>
+        <div class="cta-btn">View Special Products</div>
+      </a>
+      <a class="brand-card" href="https://aapka-apna.bazzar.workers.dev/" data-category="ecommerce" data-name="Amazon">
+        <img src="amazon.png" alt="Amazon" loading="lazy">
+        <div class="brand-name">Amazon</div>
+        <div class="cta-btn">View Special Products</div>
+      </a>
+      <a class="brand-card" href="https://aapka-apna.bazzar.workers.dev/" data-category="fashion" data-name="Myntra">
+        <img src="myntra.png" alt="Myntra" loading="lazy">
+        <div class="brand-name">Myntra</div>
+        <div class="cta-btn">View Special Products</div>
+      </a>
+      <a class="brand-card" href="https://aapka-apna.bazzar.workers.dev/" data-category="fashion" data-name="AJIO">
+        <img src="ajio.png" alt="AJIO" loading="lazy">
+        <div class="brand-name">AJIO</div>
+        <div class="cta-btn">View Special Products</div>
+      </a>
+      <a class="brand-card" href="https://aapka-apna.bazzar.workers.dev/" data-category="ecommerce" data-name="Shopsy">
+        <img src="shopsy.png" alt="Shopsy" loading="lazy">
+        <div class="brand-name">Shopsy</div>
+        <div class="cta-btn">View Special Products</div>
+      </a>
+      <a class="brand-card" href="https://aapka-apna.bazzar.workers.dev/" data-category="ecommerce" data-name="Meesho">
+        <img src="meesho.png" alt="Meesho" loading="lazy">
+        <div class="brand-name">Meesho</div>
+        <div class="cta-btn">View Special Products</div>
+      </a>
+      <a class="brand-card" href="https://aapka-apna.bazzar.workers.dev/" data-category="beauty" data-name="Dot & Key">
+        <img src="dotandkey.png" alt="Dot & Key" loading="lazy">
+        <div class="brand-name">Dot & Key</div>
+        <div class="cta-btn">View Special Products</div>
+      </a>
+      <a class="brand-card" href="https://aapka-apna.bazzar.workers.dev/" data-category="beauty" data-name="mCaffeine">
+        <img src="mcaffeine.png" alt="mCaffeine" loading="lazy">
+        <div class="brand-name">mCaffeine</div>
+        <div class="cta-btn">View Special Products</div>
+      </a>
+      <a class="brand-card" href="https://aapka-apna.bazzar.workers.dev/" data-category="beauty" data-name="The Man Company">
+        <img src="themancompany.png" alt="The Man Company" loading="lazy">
+        <div class="brand-name">The Man Company</div>
+        <div class="cta-btn">View Special Products</div>
+      </a>
+      <a class="brand-card" href="https://aapka-apna.bazzar.workers.dev/" data-category="beauty" data-name="Hyphen">
+        <img src="hyphen.png" alt="Hyphen" loading="lazy">
+        <div class="brand-name">Hyphen</div>
+        <div class="cta-btn">View Special Products</div>
+      </a>
+      <a class="brand-card" href="https://aapka-apna.bazzar.workers.dev/" data-category="beauty" data-name="Foxtale">
+        <img src="foxtale.png" alt="Foxtale" loading="lazy">
+        <div class="brand-name">Foxtale</div>
+        <div class="cta-btn">View Special Products</div>
+      </a>
+      <a class="brand-card" href="https://aapka-apna.bazzar.workers.dev/" data-category="beauty" data-name="Bella Vita Organic">
+        <img src="bellavitaorganic.png" alt="Bella Vita Organic" loading="lazy">
+        <div class="brand-name">Bella Vita Organic</div>
+        <div class="cta-btn">View Special Products</div>
+      </a>
+      <a class="brand-card" href="https://aapka-apna.bazzar.workers.dev/" data-category="beauty" data-name="The Derma Co">
+        <img src="thedermaco.png" alt="The Derma Co" loading="lazy">
+        <div class="brand-name">The Derma Co</div>
+        <div class="cta-btn">View Special Products</div>
+      </a>
+      <a class="brand-card" href="https://aapka-apna.bazzar.workers.dev/" data-category="beauty" data-name="Swiss Beauty">
+        <img src="swissbeauty.png" alt="Swiss Beauty" loading="lazy">
+        <div class="brand-name">Swiss Beauty</div>
+        <div class="cta-btn">View Special Products</div>
+      </a>
+      <a class="brand-card" href="https://aapka-apna.bazzar.workers.dev/" data-category="beauty" data-name="SUGAR">
+        <img src="sugar.png" alt="SUGAR" loading="lazy">
+        <div class="brand-name">SUGAR</div>
+        <div class="cta-btn">View Special Products</div>
+      </a>
+      <a class="brand-card" href="https://aapka-apna.bazzar.workers.dev/" data-category="beauty" data-name="WOW Skin Science">
+        <img src="wow.png" alt="WOW Skin Science" loading="lazy">
+        <div class="brand-name">WOW Skin Science</div>
+        <div class="cta-btn">View Special Products</div>
+      </a>
+      <a class="brand-card" href="https://aapka-apna.bazzar.workers.dev/" data-category="beauty" data-name="Iba">
+        <img src="iba.png" alt="Iba" loading="lazy">
+        <div class="brand-name">Iba</div>
+        <div class="cta-btn">View Special Products</div>
+      </a>
+      <a class="brand-card" href="https://aapka-apna.bazzar.workers.dev/" data-category="health" data-name="GABIT">
+        <img src="gabit.png" alt="GABIT" loading="lazy">
+        <div class="brand-name">GABIT</div>
+        <div class="cta-btn">View Special Products</div>
+      </a>
+      <a class="brand-card" href="https://aapka-apna.bazzar.workers.dev/" data-category="health" data-name="HyugaLife">
+        <img src="hyugalife.png" alt="HyugaLife" loading="lazy">
+        <div class="brand-name">HyugaLife</div>
+        <div class="cta-btn">View Special Products</div>
+      </a>
+      <a class="brand-card" href="https://aapka-apna.bazzar.workers.dev/" data-category="health" data-name="MuscleBlaze">
+        <img src="muscleblaze.png" alt="MuscleBlaze" loading="lazy">
+        <div class="brand-name">MuscleBlaze</div>
+        <div class="cta-btn">View Special Products</div>
+      </a>
+      <a class="brand-card" href="https://aapka-apna.bazzar.workers.dev/" data-category="health" data-name="Zandu">
+        <img src="zandu.png" alt="Zandu" loading="lazy">
+        <div class="brand-name">Zandu</div>
+        <div class="cta-btn">View Special Products</div>
+      </a>
+      <a class="brand-card" href="https://aapka-apna.bazzar.workers.dev/" data-category="health" data-name="Kapiva">
+        <img src="kapiva.png" alt="Kapiva" loading="lazy">
+        <div class="brand-name">Kapiva</div>
+        <div class="cta-btn">View Special Products</div>
+      </a>
+      <a class="brand-card" href="https://aapka-apna.bazzar.workers.dev/" data-category="health" data-name="AGEasy">
+        <img src="ageasy.png" alt="AGEasy" loading="lazy">
+        <div class="brand-name">AGEasy</div>
+        <div class="cta-btn">View Special Products</div>
+      </a>
+      <a class="brand-card" href="https://aapka-apna.bazzar.workers.dev/" data-category="fashion" data-name="Levi's">
+        <img src="levis.png" alt="Levi's" loading="lazy">
+        <div class="brand-name">Levi's</div>
+        <div class="cta-btn">View Special Products</div>
+      </a>
+      <a class="brand-card" href="https://aapka-apna.bazzar.workers.dev/" data-category="fashion" data-name="hummel">
+        <img src="hummel.png" alt="hummel" loading="lazy">
+        <div class="brand-name">hummel</div>
+        <div class="cta-btn">View Special Products</div>
+      </a>
+      <a class="brand-card" href="https://aapka-apna.bazzar.workers.dev/" data-category="lifestyle" data-name="IGP">
+        <img src="igp.png" alt="IGP" loading="lazy">
+        <div class="brand-name">IGP</div>
+        <div class="cta-btn">View Special Products</div>
+      </a>
+      <a class="brand-card" href="https://aapka-apna.bazzar.workers.dev/" data-category="lifestyle" data-name="BECO">
+        <img src="beco.png" alt="BECO" loading="lazy">
+        <div class="brand-name">BECO</div>
+        <div class="cta-btn">View Special Products</div>
+      </a>
+      <a class="brand-card" href="https://aapka-apna.bazzar.workers.dev/" data-category="food" data-name="True Elements">
+        <img src="trueelements.png" alt="True Elements" loading="lazy">
+        <div class="brand-name">True Elements</div>
+        <div class="cta-btn">View Special Products</div>
+      </a>
+      <a class="brand-card" href="https://aapka-apna.bazzar.workers.dev/" data-category="food" data-name="Rage Coffee">
+        <img src="ragecoffee.png" alt="Rage Coffee" loading="lazy">
+        <div class="brand-name">Rage Coffee</div>
+        <div class="cta-btn">View Special Products</div>
+      </a>
+      <a class="brand-card" href="https://aapka-apna.bazzar.workers.dev/" data-category="food" data-name="Nutslane">
+        <img src="nutslane.png" alt="Nutslane" loading="lazy">
+        <div class="brand-name">Nutslane</div>
+        <div class="cta-btn">View Special Products</div>
+      </a>
+    </div>
+    <div class="no-result" id="noResult">
+      Oops! No brands found matching your criteria.
+    </div>
+  </main>
+
+  <!-- FILTER DRAWER -->
+  <div class="filter-overlay" id="filterOverlay"></div>
+  <aside class="filter-drawer" id="filterDrawer">
+    <div class="drawer-header">
+      <h3>Filter & Sort</h3>
+      <button class="close-btn" id="closeFilterBtn">&times;</button>
+    </div>
+    <div class="drawer-body">
+      <div class="filter-group">
+        <label class="group-title" for="sortDropdown">Sort By</label>
+        <select id="sortDropdown" class="sort-select">
+          <option value="default">Recommended (Default)</option>
+          <option value="asc">Alphabetical (A-Z)</option>
+          <option value="desc">Alphabetical (Z-A)</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label class="group-title">Categories</label>
+        <ul class="category-list">
+          <li><label><input type="radio" name="category" value="all" checked> All Brands</label></li>
+          <li><label><input type="radio" name="category" value="ecommerce"> E-commerce Apps</label></li>
+          <li><label><input type="radio" name="category" value="fashion"> Fashion</label></li>
+          <li><label><input type="radio" name="category" value="beauty"> Beauty & Skincare</label></li>
+          <li><label><input type="radio" name="category" value="health"> Health & Wellness</label></li>
+          <li><label><input type="radio" name="category" value="food"> Food & Beverages</label></li>
+          <li><label><input type="radio" name="category" value="lifestyle"> Home & Lifestyle</label></li>
+        </ul>
+      </div>
+    </div>
+    <div class="drawer-footer">
+      <button class="apply-btn" id="applyFilterBtn">Show Results</button>
+    </div>
+  </aside>
+
+  <!-- JAVASCRIPT: FILTER LOGIC & SEAMLESS RGB GLOW TRAIL -->
+  <script>
+    /* --- FILTER & SORT LOGIC --- */
+    const searchInput = document.getElementById("brandSearch");
+    const sortDropdown = document.getElementById("sortDropdown");
+    const categoryRadios = document.querySelectorAll('input[name="category"]');
+    const brandsGrid = document.getElementById("brandsGrid");
+    const noResult = document.getElementById("noResult");
+    let cards = Array.from(document.querySelectorAll(".brand-card")); 
+    
+    const openFilterBtn = document.getElementById("openFilterBtn");
+    const closeFilterBtn = document.getElementById("closeFilterBtn");
+    const applyFilterBtn = document.getElementById("applyFilterBtn");
+    const filterOverlay = document.getElementById("filterOverlay");
+    const filterDrawer = document.getElementById("filterDrawer");
+
+    function openDrawer() { filterOverlay.classList.add("active"); filterDrawer.classList.add("active"); }
+    function closeDrawer() { filterOverlay.classList.remove("active"); filterDrawer.classList.remove("active"); }
+    openFilterBtn.addEventListener("click", openDrawer);
+    closeFilterBtn.addEventListener("click", closeDrawer);
+    filterOverlay.addEventListener("click", closeDrawer);
+    applyFilterBtn.addEventListener("click", () => { updateGrid(); closeDrawer(); });
+
+    function updateGrid() {
+      const searchTerm = searchInput.value.toLowerCase().trim();
+      const activeCategory = document.querySelector('input[name="category"]:checked').value;
+      const sortValue = sortDropdown.value;
+      let visibleCount = 0; let visibleCards = [];
+
+      cards.forEach(card => {
+        const brandName = card.getAttribute('data-name').toLowerCase();
+        const brandCategory = card.getAttribute('data-category');
+        const matchesSearch = brandName.includes(searchTerm);
+        const matchesCategory = (activeCategory === 'all' || activeCategory === brandCategory);
+        if (matchesSearch && matchesCategory) {
+          visibleCards.push(card); visibleCount++;
+        } else {
+          card.style.display = "none";
+        }
+      });
+      if (sortValue === 'asc') visibleCards.sort((a, b) => a.getAttribute('data-name').localeCompare(b.getAttribute('data-name')));
+      else if (sortValue === 'desc') visibleCards.sort((a, b) => b.getAttribute('data-name').localeCompare(a.getAttribute('data-name')));
+
+      visibleCards.forEach(card => {
+        card.style.display = "flex"; brandsGrid.appendChild(card); 
+      });
+      noResult.style.display = visibleCount === 0 ? "block" : "none";
+    }
+
+    searchInput.addEventListener("input", updateGrid);
+    sortDropdown.addEventListener("change", updateGrid);
+    categoryRadios.forEach(radio => radio.addEventListener("change", updateGrid));
+
+    /* --- SEAMLESS RGB MAGIC TRAIL (GAP-FILLING ALGORITHM) --- */
+    const canvas = document.getElementById('magicCanvas');
+    const ctx = canvas.getContext('2d');
+    
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    let trail = [];
+    let sparks = [];
+    const maxTrail = 70; // Tail length for smooth look
+    let globalHue = 0;
+
+    // Spark spawner
+    function spawnSparks(x, y) {
+      if(Math.random() > 0.4) {
+        sparks.push({
+          x: x, y: y,
+          vx: (Math.random() - 0.5) * 8, // Wider explosion
+          vy: (Math.random() - 0.5) * 8,
+          life: 1.5,
+          hue: globalHue + Math.random() * 60
+        });
+      }
+    }
+
+    // Advanced Point Adder (Fills gaps automatically)
+    function addPoint(x, y) {
+      // If we already have points, check distance from the last point
+      if (trail.length > 0) {
+        let last = trail[trail.length - 1];
+        let dx = x - last.x;
+        let dy = y - last.y;
+        let dist = Math.sqrt(dx * dx + dy * dy);
+        
+        // If distance is large (swiping fast), interpolate (fill the gap)
+        if (dist > 3) {
+          let steps = Math.floor(dist / 3);
+          for (let i = 1; i <= steps; i++) {
+            let interpX = last.x + dx * (i / steps);
+            let interpY = last.y + dy * (i / steps);
+            
+            trail.push({ x: interpX, y: interpY });
+            if (trail.length > maxTrail) trail.shift();
+            spawnSparks(interpX, interpY);
+          }
+        }
+      }
+      
+      // Push actual point
+      trail.push({ x, y });
+      if (trail.length > maxTrail) trail.shift();
+      spawnSparks(x, y);
+    }
+
+    window.addEventListener('mousemove', e => addPoint(e.clientX, e.clientY));
+    window.addEventListener('touchmove', e => addPoint(e.touches[0].clientX, e.touches[0].clientY));
+
+    function drawMagic() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      globalHue += 4; // Fast RGB color cycling
+
+      ctx.globalCompositeOperation = 'source-over'; 
+
+      // 1. Draw Sparks (Spreading wide)
+      for(let i = 0; i < sparks.length; i++) {
+        let p = sparks[i];
+        p.x += p.vx; p.y += p.vy;
+        p.life -= 0.04; 
+        
+        if(p.life <= 0) { sparks.splice(i, 1); i--; continue; }
+        
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.life * 5, 0, Math.PI * 2);
+        ctx.fillStyle = `hsla(${p.hue}, 100%, 55%, ${p.life})`;
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = `hsl(${p.hue}, 100%, 50%)`;
+        ctx.fill();
+      }
+
+      // 2. Draw Thick, Gapless Continuous Line
+      if (trail.length > 1) {
+        trail.shift(); 
+        
+        const head = trail[trail.length - 1];
+        const tailPos = trail[0];
+
+        let gradient = ctx.createLinearGradient(tailPos.x, tailPos.y, head.x, head.y);
+        gradient.addColorStop(0, `hsla(${globalHue}, 100%, 50%, 0)`);       
+        gradient.addColorStop(0.3, `hsla(${globalHue + 30}, 100%, 55%, 0.6)`);
+        gradient.addColorStop(0.6, `hsla(${globalHue + 60}, 100%, 55%, 0.9)`);
+        gradient.addColorStop(0.9, `hsla(${globalHue + 90}, 100%, 60%, 1)`);
+        gradient.addColorStop(1, '#ffffff');
+
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+
+        ctx.beginPath();
+        ctx.moveTo(trail[0].x, trail[0].y);
+        for (let i = 1; i < trail.length - 1; i++) {
+          const xc = (trail[i].x + trail[i + 1].x) / 2;
+          const yc = (trail[i].y + trail[i + 1].y) / 2;
+          ctx.quadraticCurveTo(trail[i].x, trail[i].y, xc, yc);
+        }
+        ctx.lineTo(head.x, head.y);
+
+        // EXTRA THICK Outer Glow - Reduced Highlight per user request
+        ctx.lineWidth = 25; 
+        ctx.strokeStyle = `hsla(${globalHue + 60}, 100%, 50%, 0.15)`; 
+        ctx.shadowBlur = 20;
+        ctx.shadowColor = `hsl(${globalHue + 60}, 100%, 50%)`;
+        ctx.stroke();
+
+        // Vivid Core Color - Reduced thickness by 1.5px per user request
+        ctx.lineWidth = 16.5;
+        ctx.strokeStyle = gradient;
+        ctx.shadowBlur = 10;
+        ctx.stroke();
+
+        // Center White Beam
+        ctx.lineWidth = 4.5;
+        ctx.strokeStyle = `hsla(${globalHue + 90}, 100%, 90%, 1)`;
+        ctx.shadowBlur = 5;
+        ctx.shadowColor = '#ffffff';
+        ctx.stroke();
+      }
+
+      requestAnimationFrame(drawMagic);
+    }
+
+    drawMagic();
+  </script>
+
+</body>
+</html>
